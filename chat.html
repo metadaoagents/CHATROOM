@@ -1,0 +1,338 @@
+<html>
+  <head>
+    <title>Chat room</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://npmcdn.com/moralis@0.0.6/dist/moralis.js"></script>
+  </head>
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
+  
+      <!-- https://www.icegif.com/wp-content/uploads/black-hole-icegif-7.gif -->
+      <!-- https://data.whicdn.com/images/321543919/original.gif -->
+    </head>  
+    <body style="background-image: url('https://thumbs.gfycat.com/AnyFaithfulHylaeosaurus-max-1mb.gif');"></body>
+      
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <style>.bg-light {
+          background-color: #000000!important;}
+          </style>
+        
+        <img src="https://daoagents.s3.amazonaws.com/meta-dao-agents.jpg" style="width: 125px; height: 78px;"></img>
+        <!-- <a class="navbar-brand" href="#">My DEX</a> -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+              <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+              </li>
+          </ul>
+
+<p id="status"style="color: rgb(94, 92, 92);"></p>
+
+
+          <div  class="dropdown">
+            <button style="background-image: url('https://i.pinimg.com/originals/92/85/29/92852935deb96e204ee60b7ec07f4627.gif');"class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Log in to Chat
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <button id="btn-login" class="dropdown-item" >Sign in </button>
+              <button id="btn-logout" class="dropdown-item" >Sign Out</button>
+              
+            </div>
+          </div>
+  
+  </nav>
+
+    <body>
+      <br>
+
+     
+
+  
+
+      
+    
+      <script>
+        function myFunction() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("chatHistory");
+            li = ul.getElementsByTagName("tr");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                p = li[i].getElementsByTagName("p")[0];
+                txtValue = a.textContent || a.innerText;
+                txtValue2 = p.textContent || p.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                }
+  
+                else if (txtValue2.toUpperCase().indexOf(filter)  > -1) {
+                      li[i].style.display = "";
+                  
+                  } 
+                
+                else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+        </script>
+        
+      </div></div>
+    
+
+      <!-- <div class="container4" id="window4">
+        <div class="right">
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search messages by address" title="Type in a name"> -->
+      <div class="container" id="window3">
+        <div class="center">
+          
+      <input  style='font-family: monospace; color: blanchedalmond ; background-color: #404240; position:absolute;right:20px;' size="40" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search messages " title="Type in a name"></div>
+  
+      <!-- <button id="btn-login">Moralis Login</button>
+      <button id="btn-logout">Logout</button> -->
+  
+      
+  
+    
+  
+      <style>
+        .center-block {
+    margin: auto;
+    display: block;
+  }
+  .right-block {
+    margin: right;
+    display: right;
+  }
+  
+      </style>
+      <br><br>
+      <div class="col-75">
+       
+        <textarea type="text" id="chatInput" name="subject" placeholder="Write something.." style=" position:absolute;left:20px;height:148px ; width: 400px;"></textarea>
+        <input style="position:absolute;left:419px;font-family: monospace; color: blanchedalmond ; background-image: url('https://i.pinimg.com/originals/92/85/29/92852935deb96e204ee60b7ec07f4627.gif');" type="button" value="Send Message" id="sendButton"/>
+      </div><br><br><br><br><br><br><br>
+      <p style='position:absolute;right:20px; font-family: monospace; color: rgb(109, 109, 109) ' id='messages'></p>
+    </div>
+     
+
+      <div id="chatHistory">
+        <ul id="historyList"></ul>
+      </div>
+
+    
+
+      <script>
+        // connect to Moralis server
+        // Moralis.initialize("cACt60Lmxgj6a2TczULXZo1dVEZkGq0OPhXSx9et");
+        // Moralis.serverURL = "https://yyk2zokkkllt.grandmoralis.com:2053/server";
+
+
+
+        
+      const serverUrl = "https://oid22tonbqqn.moralishost.com:2053/server";
+const appId = "Sojukv0ZkWHJEo9pqURpjyzVQRoE5oSJ4vmVU8co";
+Moralis.start({ serverUrl, appId });
+
+        async function login() {
+        let user = Moralis.User.current();
+        if (!user) {
+          user = await Moralis.Web3.authenticate();
+          
+        }
+
+
+        
+
+        
+
+
+
+        
+        
+        document.getElementById('chatRooms').innerHTML += "<div class='container'><div class='center' id='chatRooms'> </div></div>"
+        alert("Successfully logged in ", user);
+        
+       
+      }
+
+      
+      async function logOut() {
+        await Moralis.User.logOut();
+        console.log("logged out");
+        window.location.reload()
+        alert("successfully logged out ");
+      }
+
+
+
+        const queryString = window.location.search;
+        const params = new URLSearchParams(queryString);
+        const chatId = params.get('id')
+        console.log(chatId)
+
+    
+
+       
+
+        async function init(){
+          let query = new Moralis.Query('Message');
+          let subscription = await query.subscribe();
+
+          const historyList = document.getElementById("historyList");
+
+          subscription.on('create', (object) => {
+            if(object.get("group") == chatId){
+              var listItem = document.createElement('tr');
+              let str_date= object.get('createdAt')
+              var str_date2=  str_date.toString().slice(0,25)
+              listItem.innerHTML = `<br><br> <img width="50" height="50" src="https://avatars.dicebear.com/api/pixel-art/${object.get("sender")}.svg"></img><a href="https://etherscan.io/address/` + object.get("sender")+ '"' +"</a>"
+                + object.get("sender") +  "</a><span style='font-family: monospace; color: blanchedalmond;'>"
+                   + " says:<br>"+
+                 '<p>'+object.get("text")+ '<br><br>'+str_date2 +'</p>'
+              // historyList.appendChild(listItem);
+              historyList.insertBefore(listItem, historyList.firstChild); 
+
+              
+            }
+            
+          });
+        }
+
+  
+
+        async function getHistory(){
+          const Message = Moralis.Object.extend("Message");
+          const query = new Moralis.Query(Message);
+          query.equalTo("group",chatId)
+          query.descending("createdAt");
+          query.limit(1000)
+          const results = await query.find();
+          // const results2 = results.reverse();
+          console.log(results)
+          
+          
+
+          const historyList = document.getElementById("historyList"); 
+
+          for (let i = 0; i < results.length; i++) {
+            const object = results[i];
+            var listItem = document.createElement('tr');
+            let str_date= object.get('createdAt')
+            var str_date2=  str_date.toString().slice(0,25)
+            listItem.innerHTML = ` <br><br>  <img  width="50" height="50" src="https://avatars.dicebear.com/api/pixel-art/${object.get("sender")}.svg"></img>    <a  href="https://etherscan.io/address/` + object.get("sender")+ '"' +"</a>"  + object.get("sender") + 
+               "</a> <span style='font-family: monospace; color: blanchedalmond;'>" +
+                 "  says:<br> <div style='height: 100%; width:100%'>"+object.get("text")+
+                  '<br><br>'+str_date2+ '</p>'
+            historyList.appendChild(listItem)
+           
+            // historyList.insertBefore(listItem, historyList.firstChild); 
+            ;
+          }
+          var x = document.querySelectorAll('a').length;
+          const historyList2 = document.getElementById("messages");
+          var listItem2 = document.createElement('p');
+          listItem2.innerHTML = x+' messages'
+          historyList2.appendChild(listItem2)
+          // listItem.innerHTML = "<a href='https://etherscan.io/address/'>" + object.get("sender")+"</a>" +     " says:<br>"+object.get("text")+"<br>"
+
+        }
+
+        // someParentObject.insertBefore(someChildObject,someParentObject.firstChild);
+        // someParentObject.insertBefore(someChildObject,someParentObject.firstChild);
+
+        init()
+        getHistory()
+       
+
+        
+
+
+        async function sendMessage(){
+          
+          let user = Moralis.User.current();
+          let message1 =  document.getElementById("chatInput").value
+          var message = message1.replace(/<[^>]+>/g, '');
+        
+          // let message = new DOMParser().parseFromString(message1, "text/xml").value;
+         
+          console.log(message)
+
+        
+
+          if (message.length>3000  ) {
+            alert('Message too long')
+          }
+          else if (!user ) {
+            alert('Please log in to send message')
+          }
+          else if (message.length<1 ) {
+            alert('Cannot send empty messages')
+          }
+
+          else if(message && message.length>0){
+            const Message = Moralis.Object.extend("Message");
+            const Message2 = Moralis.Object.extend("Chats");
+            const m = new Message();
+            // const m2 = new Message2();
+            m.set("sender",user.get("ethAddress"))
+            m.set("text",message)
+            m.set("group",chatId)
+            // m2.set("group",chatId)
+
+            m.save()
+            // m2.save()
+
+            
+
+            console.log("sending " + message + " from " + user.get("ethAddress") + " in group " + chatId)
+            // alert("created group chat with title " );
+        //     await new Promise(resolve => setTimeout(resolve, 1200)); 
+        
+        // // window.location.href = "http://127.0.0.1:5500/";
+        //       location.reload();
+          
+          }
+        }
+        
+        document.getElementById("sendButton").onclick = sendMessage;
+        document.getElementById("btn-login").onclick = login;
+      document.getElementById("btn-logout").onclick = logOut;
+        // console.log(document.getElementsByTagName('a').length)
+    
+
+      </script>
+
+
+<!-- 
+
+    </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
